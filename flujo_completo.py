@@ -7,7 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1F2fEPG9WYFq3DNZwVwf9ZiRNaDnsc8rF
 """
 
-!pip install tableone > NULL
+#!pip install tableone > NULL
 
 # For processing data
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
@@ -17,7 +17,7 @@ from scipy import stats
 import numpy as np
 import re
 
-from tableone import TableOne
+#from tableone import TableOne
 
 ## To modeling
 from sklearn.linear_model import LogisticRegression
@@ -253,12 +253,14 @@ df_scaled
 
 #df = dummies_ohe(df_scaled,categoricas) #si hubiera categóricas, aquí se convertirían
 
+''''
 TableOne(df,
          nonnormal = nonormal,
          categorical=categoricas,
          groupby='Outcome', #por cual se quiere agrupar
          pval=True,
          htest_name=True)
+'''
 
 """#Procesamiento"""
 
@@ -286,3 +288,7 @@ preds_MLP = best_MLP.predict(X_test)
 print(f'Decision tree: \n {classification_report(y_test, preds_dt)}')
 print(f'Logistic regression:\n {classification_report(y_test, preds_lr)}')
 print(f'MLP: \n {classification_report(y_test, preds_MLP)}')
+
+import pickle
+with open("Modelo_ArbolD.pkl", 'wb') as j:
+    pickle.dump("best_dt", j)
